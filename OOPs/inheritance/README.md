@@ -1,1 +1,1 @@
-# Inheritance Programs
+# Inheritance folder
