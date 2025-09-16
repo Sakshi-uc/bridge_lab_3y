@@ -1,30 +1,27 @@
 import java.util.Scanner;
 
-public class Copy2Dto1D {
-    public static void main(String[] args) {
-        Scanner input = new Scanner(System.in);
-        System.out.print("Enter number of rows: ");
-        int rows = input.nextInt();
-        System.out.print("Enter number of columns: ");
-        int cols = input.nextInt();
-
-        int[][] matrix = new int[rows][cols];
-        int[] array = new int[rows * cols];
-        int index = 0;
-
-        System.out.println("Enter elements of matrix:");
-        for (int i = 0; i < rows; i++) {
-            for (int j = 0; j < cols; j++) {
-                matrix[i][j] = input.nextInt();
-                array[index++] = matrix[i][j];
-            }
-        }
-
-        System.out.println("1D Array:");
-        for (int val : array) {
-            System.out.print(val + " ");
-        }
-
-        input.close();
-    }
+public class CopyMatrixToArray{
+   public static void main(String[] args){
+      Scanner sc=new Scanner(System.in);
+      System.out.print("Enter rows :");
+      int r = sc.nextInt();
+      System.out.print("Enter cols :" );
+      int c=sc.nextInt();
+      int [][] twoD = new int[r][c];
+      int [] oneD=new int[r * c];
+      int k=0;
+      System.out.println("Enter matrix values :");
+      for(int i=0;i<r ; i++ ){
+         for(int j =0; j<c;j++ ){
+            twoD[i][j]=sc.nextInt();
+            oneD[k]= twoD[i][j];
+            k++ ;
+         }
+      }
+      System.out.println("Flattened array :" );
+      for(int x : oneD ){
+         System.out.print(x +" ");
+      }
+      sc.close();
+   }
 }
