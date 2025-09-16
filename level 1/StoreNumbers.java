@@ -1,28 +1,32 @@
 import java.util.Scanner;
 
-public class StoreNumbers {
-    public static void main(String[] args) {
-        Scanner input = new Scanner(System.in);
-        double[] numbers = new double[10];
-        double total = 0.0;
-        int index = 0;
-
-        System.out.println("Enter numbers (0 or negative to stop):");
-        while (true) {
-            double num = input.nextDouble();
-            if (num <= 0 || index == 10) {
-                break;
-            }
-            numbers[index++] = num;
-        }
-
-        System.out.println("Numbers entered:");
-        for (int i = 0; i < index; i++) {
-            System.out.print(numbers[i] + " ");
-            total += numbers[i];
-        }
-        System.out.println("\nSum = " + total);
-
-        input.close();
-    }
+public class NumSplit{
+   public static void main(String[] args){
+      Scanner inp=new Scanner(System.in);
+      System.out.print("Enter a natural number : ");
+      int val=inp.nextInt();
+      if(val<=0){
+         System.out.println("Error : must be natural number");
+         return;
+      }
+      int [] oddArr=new int[val/2+1];
+      int [] evenArr=new int[val/2+1];
+      int oc=0,ec=0;
+      for(int x=1;x<=val;x++){
+         if(x%2==0){
+            evenArr[ec++]=x;
+         }else{
+            oddArr[oc++]=x;
+         }
+      }
+      System.out.println("Odd nums :");
+      for(int a=0;a<oc;a++){
+         System.out.print(oddArr[a]+" ");
+      }
+      System.out.println("\nEven nums :");
+      for(int b=0;b<ec;b++){
+         System.out.print(evenArr[b]+" ");
+      }
+      inp.close();
+   }
 }
