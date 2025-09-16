@@ -1,20 +1,17 @@
 import java.util.Scanner;
 
-public class MultiplicationTable {
-    public static void main(String[] args) {
-        Scanner input = new Scanner(System.in);
-        System.out.print("Enter a number: ");
-        int number = input.nextInt();
-
-        int[] table = new int[10];
-        for (int i = 1; i <= 10; i++) {
-            table[i - 1] = number * i;
-        }
-
-        for (int i = 0; i < table.length; i++) {
-            System.out.println(number + " * " + (i + 1) + " = " + table[i]);
-        }
-
-        input.close();
-    }
+public class MultiTable{
+   public static void main(String[] args){
+      Scanner sc=new Scanner(System.in);
+      System.out.print("Enter a number :");
+      int n=sc.nextInt();
+      int [] tab=new int[10];
+      for(int j=1;j<=10;j++){
+         tab[j-1]=n*j;
+      }
+      for(int k=0;k<tab.length;k++){
+         System.out.println(n+" * "+(k+1)+" = "+tab[k]);
+      }
+      sc.close();
+   }
 }
