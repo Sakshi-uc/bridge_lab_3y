@@ -1,20 +1,17 @@
 import java.util.Scanner;
 
-public class MultiplicationRange {
-    public static void main(String[] args) {
-        Scanner input = new Scanner(System.in);
-        System.out.print("Enter a number: ");
-        int number = input.nextInt();
-
-        int[] results = new int[4];
-        for (int i = 6; i <= 9; i++) {
-            results[i - 6] = number * i;
-        }
-
-        for (int i = 6; i <= 9; i++) {
-            System.out.println(number + " * " + i + " = " + results[i - 6]);
-        }
-
-        input.close();
-    }
+public class MultiRange{
+   public static void main(String[] args){
+      Scanner sc=new Scanner(System.in);
+      System.out.print("Enter a number :");
+      int n=sc.nextInt();
+      int [] arr=new int[4];
+      for(int i=6;i<=9;i++){
+         arr[i-6]=n*i;
+      }
+      for(int i=6;i<=9;i++){
+         System.out.println(n+" * "+i+" = "+arr[i-6]);
+      }
+      sc.close();
+   }
 }
