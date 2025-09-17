@@ -4,63 +4,63 @@ import java.util.Scanner;
 
 public class StudentScorecard {
 
-    static int[][] generateScores(int n) {
-        int[][] scores = new int[n][3]; // 3 subjects
-        for (int i = 0; i < n; i++) {
-            scores[i][0] = 40 + (int)(Math.random() * 61); // Physics 40-100
-            scores[i][1] = 40 + (int)(Math.random() * 61); // Chemistry
-            scores[i][2] = 40 + (int)(Math.random() * 61); // Maths
+    static int[][] genScores(int studentCount) {
+        int[][] marks = new int[studentCount][3];
+        for (int i = 0; i < studentCount; i++) {
+            marks[i][0] = 40 + (int)(Math.random() * 61);
+            marks[i][1] = 40 + (int)(Math.random() * 61);
+            marks[i][2] = 40 + (int)(Math.random() * 61);
         }
-        return scores;
+        return marks;
     }
 
-    static double[][] calculateStats(int[][] scores) {
-        double[][] stats = new double[scores.length][3]; // total, avg, perc
-        for (int i = 0; i < scores.length; i++) {
-            int total = scores[i][0] + scores[i][1] + scores[i][2];
+    static double[][] calcStats(int[][] marks) {
+        double[][] details = new double[marks.length][3];
+        for (int i = 0; i < marks.length; i++) {
+            int total = marks[i][0] + marks[i][1] + marks[i][2];
             double avg = Math.round(total / 3.0 * 100.0) / 100.0;
             double perc = Math.round(total * 100.0 / 300 * 100.0) / 100.0;
-            stats[i][0] = total;
-            stats[i][1] = avg;
-            stats[i][2] = perc;
+            details[i][0] = total;
+            details[i][1] = avg;
+            details[i][2] = perc;
         }
-        return stats;
+        return details;
     }
 
-    static String[] calculateGrades(double[][] stats) {
-        String[] grades = new String[stats.length];
-        for (int i = 0; i < stats.length; i++) {
-            double perc = stats[i][2];
-            if (perc >= 80) grades[i] = "A";
-            else if (perc >= 70) grades[i] = "B";
-            else if (perc >= 60) grades[i] = "C";
-            else if (perc >= 50) grades[i] = "D";
-            else if (perc >= 40) grades[i] = "E";
-            else grades[i] = "R";
+    static String[] calcGrades(double[][] details) {
+        String[] gradeList = new String[details.length];
+        for (int i = 0; i < details.length; i++) {
+            double perc = details[i][2];
+            if (perc >= 80) gradeList[i] = "A";
+            else if (perc >= 70) gradeList[i] = "B";
+            else if (perc >= 60) gradeList[i] = "C";
+            else if (perc >= 50) gradeList[i] = "D";
+            else if (perc >= 40) gradeList[i] = "E";
+            else gradeList[i] = "R";
         }
-        return grades;
+        return gradeList;
     }
 
-    static void displayScorecard(int[][] scores, double[][] stats, String[] grades) {
+    static void showScorecard(int[][] marks, double[][] details, String[] gradeList) {
         System.out.printf("%-8s %-8s %-8s %-8s %-8s %-8s %-6s%n",
                 "Physics","Chem","Maths","Total","Average","Percent","Grade");
-        for (int i = 0; i < scores.length; i++) {
+        for (int i = 0; i < marks.length; i++) {
             System.out.printf("%-8d %-8d %-8d %-8.0f %-8.2f %-8.2f %-6s%n",
-                    scores[i][0], scores[i][1], scores[i][2],
-                    stats[i][0], stats[i][1], stats[i][2], grades[i]);
+                    marks[i][0], marks[i][1], marks[i][2],
+                    details[i][0], details[i][1], details[i][2], gradeList[i]);
         }
     }
 
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+        Scanner reader = new Scanner(System.in);
         System.out.print("Enter number of students: ");
-        int n = sc.nextInt();
+        int count = reader.nextInt();
 
-        int[][] scores = generateScores(n);
-        double[][] stats = calculateStats(scores);
-        String[] grades = calculateGrades(stats);
+        int[][] marks = genScores(count);
+        double[][] details = calcStats(marks);
+        String[] grades = calcGrades(details);
 
-        displayScorecard(scores, stats, grades);
-        sc.close();
+        showScorecard(marks, details, grades);
+        reader.close();
     }
 }
