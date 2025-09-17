@@ -1,53 +1,45 @@
 package string_practice_level_2;
-
 import java.util.Scanner;
-
-public class WordsWithLength {
-
-    static int getLength(String str) {
-        int count = 0;
-        try {
-            while (true) {
-                str.charAt(count);
-                count++;
+public class WordsWithLength{
+    static int strLen(String s){
+        int cnt=0;
+        try{
+            while(true){
+                s.charAt(cnt);
+                cnt++;
             }
-        } catch (Exception e) {
-        }
-        return count;
+        }catch(Exception e){}
+        return cnt;
     }
-
-    static String[] splitWords(String text) {
-        int n = getLength(text);
-        int spaces = 0;
-        for (int i = 0; i < n; i++) if (text.charAt(i) == ' ') spaces++;
-        String[] words = new String[spaces + 1];
-        int start = 0, index = 0;
-        for (int i = 0; i <= n; i++) {
-            if (i == n || text.charAt(i) == ' ') {
-                words[index++] = text.substring(start, i);
-                start = i + 1;
+    static String[] splitText(String txt){
+        int len=strLen(txt),spaces=0;
+        for(int i=0;i<len;i++) if(txt.charAt(i)==' ') spaces++;
+        String[] arr=new String[spaces+1];
+        int start=0,idx=0;
+        for(int i=0;i<=len;i++){
+            if(i==len||txt.charAt(i)==''){
+                arr[idx++]=txt.substring(start,i);
+                start=i+1;
             }
         }
-        return words;
+        return arr;
     }
-
-    static String[][] wordsWithLength(String[] words) {
-        String[][] result = new String[words.length][2];
-        for (int i = 0; i < words.length; i++) {
-            result[i][0] = words[i];
-            result[i][1] = String.valueOf(getLength(words[i]));
+    static String[][] wordLengths(String[] arr){
+        String[][] res=new String[arr.length][2];
+        for(int i=0;i<arr.length;i++){
+            res[i][0]=arr[i];
+            res[i][1]=String.valueOf(strLen(arr[i]));
         }
-        return result;
+        return res;
     }
-
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
         System.out.print("Enter text: ");
-        String input = sc.nextLine();
-        String[] words = splitWords(input);
-        String[][] table = wordsWithLength(words);
-        System.out.printf("%-15s %-10s%n", "Word", "Length");
-        for (String[] row : table) System.out.printf("%-15s %-10s%n", row[0], row[1]);
+        String inp=sc.nextLine();
+        String[] words=splitText(inp);
+        String[][] tbl=wordLengths(words);
+        System.out.printf("%-15s %-10s%n","Word","Length");
+        for(String[] r:tbl) System.out.printf("%-15s %-10s%n",r[0],r[1]);
         sc.close();
     }
 }
