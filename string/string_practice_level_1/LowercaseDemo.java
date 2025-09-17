@@ -3,25 +3,25 @@ package string_practice_level_1;
 import java.util.Scanner;
 
 public class LowercaseDemo {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+   public static void main(String[] args){
+      Scanner in=new Scanner(System.in);
 
-        System.out.print("Enter text: ");
-        String str = sc.nextLine();
+      System.out.print("Type some text : ");
+      String input=in.nextLine();
 
-        String manual = "";
-        for (int i = 0; i < str.length(); i++) {
-            char ch = str.charAt(i);
-            if (ch >= 'A' && ch <= 'Z') {
-                manual += (char)(ch + 32);
-            } else {
-                manual += ch;
-            }
-        }
+      String converted="";
+      for(int k=0;k<input.length();k++){
+         char c=input.charAt(k);
+         if(c>='A' && c<='Z'){
+            converted+=(char)(c+32);
+         }else{
+            converted+=c;
+         }
+      }
 
-        String builtIn = str.toLowerCase();
+      String libResult=input.toLowerCase();
 
-        System.out.println("Manual lowercase: " + manual);
-        System.out.println("Built-in lowercase: " + builtIn);
-    }
+      System.out.println("Manual way -> "+converted);
+      System.out.println("Library way -> "+libResult);
+   }
 }
