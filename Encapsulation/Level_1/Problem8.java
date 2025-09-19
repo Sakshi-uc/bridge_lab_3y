@@ -1,59 +1,69 @@
 public class Problem8 {
     public static void main(String[] args) {
-        RideVehicle[] vehicles = new RideVehicle[] {
+        RideVehicle[] rideList = new RideVehicle[] {
             new CarRide("V1","Raju",12),
             new BikeRide("V2","Siva",6),
             new AutoRide("V3","Kiran",8)
         };
-        double distance = 10; // km
-        for (RideVehicle v : vehicles) {
-            System.out.println(v.getVehicleDetails());
-            System.out.println("Fare for " + distance + " km: " + v.calculateFare(distance));
+        double travelDistance = 10; // km
+        for (RideVehicle ride : rideList) {
+            System.out.println(ride.getVehicleDetails());
+            System.out.println("Fare for " + travelDistance + " km: " + ride.calculateFare(travelDistance));
             System.out.println("----");
         }
     }
 }
 
 abstract class RideVehicle {
-    private String vehicleId;
-    private String driverName;
-    private double ratePerKm;
-    public RideVehicle(String id,String driver,double rate){ this.vehicleId=id; this.driverName=driver; this.ratePerKm=rate; }
-    public String getVehicleId(){ return vehicleId; }
-    public String getDriverName(){ return driverName; }
-    protected double getRatePerKm(){ return ratePerKm; }
-    public String getVehicleDetails(){ return vehicleId + " driven by " + driverName + " @ " + ratePerKm + "/km"; }
-    public abstract double calculateFare(double distance);
+    private String rideId;
+    private String riderName;
+    private double fareRatePerKm;
+
+    public RideVehicle(String id, String driver, double rate) { 
+        this.rideId = id; 
+        this.riderName = driver; 
+        this.fareRatePerKm = rate; 
+    }
+
+    public String getRideId(){ return rideId; }
+    public String getRiderName(){ return riderName; }
+    protected double getFareRatePerKm(){ return fareRatePerKm; }
+
+    public String getVehicleDetails(){ 
+        return rideId + " driven by " + riderName + " @ " + fareRatePerKm + "/km"; 
+    }
+
+    public abstract double calculateFare(double travelDistance);
 }
 
 interface GPS {
     String getCurrentLocation();
-    void updateLocation(String newLoc);
+    void updateLocation(String newLocation);
 }
 
 class CarRide extends RideVehicle implements GPS {
-    private String location = "Unknown";
+    private String currentLocation = "Unknown";
     public CarRide(String id,String driver,double rate){ super(id,driver,rate); }
     @Override
-    public double calculateFare(double distance){ return getRatePerKm() * distance + 20; } // base fee
-    @Override public String getCurrentLocation(){ return location; }
-    @Override public void updateLocation(String newLoc){ location = newLoc; }
+    public double calculateFare(double travelDistance){ return getFareRatePerKm() * travelDistance + 20; } // base fee
+    @Override public String getCurrentLocation(){ return currentLocation; }
+    @Override public void updateLocation(String newLocation){ currentLocation = newLocation; }
 }
 
 class BikeRide extends RideVehicle implements GPS {
-    private String location = "Unknown";
+    private String currentLocation = "Unknown";
     public BikeRide(String id,String driver,double rate){ super(id,driver,rate); }
     @Override
-    public double calculateFare(double distance){ return getRatePerKm() * distance; }
-    @Override public String getCurrentLocation(){ return location; }
-    @Override public void updateLocation(String newLoc){ location = newLoc; }
+    public double calculateFare(double travelDistance){ return getFareRatePerKm() * travelDistance; }
+    @Override public String getCurrentLocation(){ return currentLocation; }
+    @Override public void updateLocation(String newLocation){ currentLocation = newLocation; }
 }
 
 class AutoRide extends RideVehicle implements GPS {
-    private String location = "Unknown";
+    private String currentLocation = "Unknown";
     public AutoRide(String id,String driver,double rate){ super(id,driver,rate); }
     @Override
-    public double calculateFare(double distance){ return getRatePerKm() * distance + 10; }
-    @Override public String getCurrentLocation(){ return location; }
-    @Override public void updateLocation(String newLoc){ location = newLoc; }
+    public double calculateFare(double travelDistance){ return getFareRatePerKm() * travelDistance + 10; }
+    @Override public String getCurrentLocation(){ return currentLocation; }
+    @Override public void updateLocation(String newLocation){ currentLocation = newLocation; }
 }
