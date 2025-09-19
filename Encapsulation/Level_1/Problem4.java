@@ -1,45 +1,59 @@
-public class Problem3{
-    public static void main(String[] args){
-        Vehicle[] vehicles=new Vehicle[]{
-            new Car("KA-01-1234",2000),
-            new Bike("KA-02-2222",500),
-            new Truck("KA-03-3333",5000)
+public class Problem1 {
+    public static void main(String[] args) {
+        Employee[] staff = new Employee[] {
+            new FullTimeEmployee(1, "Alice", 50000, 5000),
+            new PartTimeEmployee(2, "Bob", 300, 120)
         };
-        int days=3;
-        for(Vehicle v:vehicles){
-            System.out.println(v.getVehicleNumber()+"("+v.getType()+")");
-            System.out.println("Rental for "+days+" days:"+v.calculateRentalCost(days));
-            if(v instanceof Insurable) System.out.println(((Insurable)v).getInsuranceDetails()+",Insurance:"+((Insurable)v).calculateInsurance());
+        for (Employee emp : staff) {
+            emp.displayDetails();
+            System.out.println("Calculated Salary: " + emp.calculateSalary());
             System.out.println("----");
         }
     }
 }
-abstract class Vehicle{
-    private String vNo;
-    private String vKind;
-    private double ratePerDay;
-    public Vehicle(String num,String kind,double rate){this.vNo=num;this.vKind=kind;this.ratePerDay=rate;}
-    public String getVehicleNumber(){return vNo;}
-    public String getType(){return vKind;}
-    protected double getRentalRate(){return ratePerDay;}
-    public abstract double calculateRentalCost(int days);
+abstract class Employee {
+    private int empId;
+    private String empName;
+    private double salaryBase;
+    public Employee(int id, String name, double base) {
+        this.empId = id;
+        this.empName = name;
+        this.salaryBase = base;
+    }
+    public int getEmpId() { return empId; }
+    public String getEmpName() { return empName; }
+    protected double getSalaryBase() { return salaryBase; }
+    public void setSalaryBase(double s) { this.salaryBase = s; }
+    public void displayDetails() {
+        System.out.println("ID: " + empId + ", Name: " + empName + ", BaseSalary: " + salaryBase);
+    }
+    public abstract double calculateSalary();
 }
-interface Insurable{double calculateInsurance();String getInsuranceDetails();}
-class Car extends Vehicle implements Insurable{
-    private String polId="CAR-POL-123";
-    public Car(String num,double rate){super(num,"Car",rate);}
-    @Override public double calculateRentalCost(int days){return getRentalRate()*days;}
-    @Override public double calculateInsurance(){return 300;}
-    @Override public String getInsuranceDetails(){return "CarPolicy:"+polId;}
+class FullTimeEmployee extends Employee {
+    private double allowanceMonthly;
+    public FullTimeEmployee(int id, String name, double base, double allowance) {
+        super(id, name, base);
+        this.allowanceMonthly = allowance;
+    }
+    @Override
+    public double calculateSalary() {
+        return getSalaryBase() + allowanceMonthly;
+    }
 }
-class Bike extends Vehicle{
-    public Bike(String num,double rate){super(num,"Bike",rate);}
-    @Override public double calculateRentalCost(int days){return getRentalRate()*days*0.8;}
+class PartTimeEmployee extends Employee {
+    private double rateHourly;
+    private int workedHours;
+    public PartTimeEmployee(int id, String name, double rate, int hours) {
+        super(id, name, 0);
+        this.rateHourly = rate;
+        this.workedHours = hours;
+    }
+    @Override
+    public double calculateSalary() {
+        return rateHourly * workedHours;
+    }
 }
-class Truck extends Vehicle implements Insurable{
-    private String polId="TRK-POL-789";
-    public Truck(String num,double rate){super(num,"Truck",rate);}
-    @Override public double calculateRentalCost(int days){return getRentalRate()*days*1.5;}
-    @Override public double calculateInsurance(){return 1000;}
-    @Override public String getInsuranceDetails(){return "TruckPolicy:"+polId;}
+interface Department {
+    void assignDepartment(String dept);
+    String getDepartmentDetails();
 }
