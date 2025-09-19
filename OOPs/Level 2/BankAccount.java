@@ -1,87 +1,87 @@
 import java.util.Scanner;
 
 public class BankAccount {
-	private String accountHolder;
-	private String accountNumber;
-	private double balance;
+    private String holderName;
+    private String accountId;
+    private double accountBalance;
 
-	public BankAccount(String accountHolder, String accountNumber, double balance) {
-		this.accountHolder = accountHolder;
-		this.accountNumber = accountNumber;
-		this.balance = balance;
-	}
+    public BankAccount(String holderName, String accountId, double accountBalance) {
+        this.holderName = holderName;
+        this.accountId = accountId;
+        this.accountBalance = accountBalance;
+    }
 
-	public void deposit(double amount) {
-		if (amount > 0) {
-			balance += amount;
-			System.out.println("Successfully deposited: $" + amount);
-		} else {
-			System.out.println("Deposit amount must be positive.");
-		}
-	}
+    public void depositAmount(double depositValue) {
+        if (depositValue > 0) {
+            accountBalance += depositValue;
+            System.out.println("Successfully deposited: $" + depositValue);
+        } else {
+            System.out.println("Deposit amount must be positive.");
+        }
+    }
 
-	public void withdraw(double amount) {
-		if (amount <= 0) {
-			System.out.println("Withdrawal amount must be positive.");
-		} else if (amount > balance) {
-			System.out.println("Insufficient balance for this withdrawal.");
-		} else {
-			balance -= amount;
-			System.out.println("Successfully withdrew: $" + amount);
-		}
-	}
+    public void withdrawAmount(double withdrawValue) {
+        if (withdrawValue <= 0) {
+            System.out.println("Withdrawal amount must be positive.");
+        } else if (withdrawValue > accountBalance) {
+            System.out.println("Insufficient balance for this withdrawal.");
+        } else {
+            accountBalance -= withdrawValue;
+            System.out.println("Successfully withdrew: $" + withdrawValue);
+        }
+    }
 
-	public void displayBalance() {
-		System.out.println("Account Holder: " + accountHolder);
-		System.out.println("Account Number: " + accountNumber);
-		System.out.println("Current Balance: $" + balance);
-	}
+    public void showBalance() {
+        System.out.println("Account Holder: " + holderName);
+        System.out.println("Account Number: " + accountId);
+        System.out.println("Current Balance: $" + accountBalance);
+    }
 
-	public static void main(String[] args) {
-		Scanner scanner = new Scanner(System.in);
-		
-		System.out.println("--- Welcome to the Bank ---");
-		System.out.print("Enter account holder's name: ");
-		String name = scanner.nextLine();
-		System.out.print("Enter account number: ");
-		String number = scanner.nextLine();
-		System.out.print("Enter initial balance: ");
-		double initialBalance = scanner.nextDouble();
+    public static void main(String[] args) {
+        Scanner inputScanner = new Scanner(System.in);
 
-		BankAccount account = new BankAccount(name, number, initialBalance);
-		int choice;
+        System.out.println("--- Welcome to the Bank ---");
+        System.out.print("Enter account holder's name: ");
+        String enteredName = inputScanner.nextLine();
+        System.out.print("Enter account number: ");
+        String enteredAccountId = inputScanner.nextLine();
+        System.out.print("Enter initial balance: ");
+        double enteredBalance = inputScanner.nextDouble();
 
-		do {
-			System.out.println("\n--- ATM Menu ---");
-			System.out.println("1. Deposit");
-			System.out.println("2. Withdraw");
-			System.out.println("3. Check Balance");
-			System.out.println("4. Exit");
-			System.out.print("Choose an option: ");
-			choice = scanner.nextInt();
+        BankAccount userAccount = new BankAccount(enteredName, enteredAccountId, enteredBalance);
+        int menuChoice;
 
-			switch (choice) {
-				case 1:
-					System.out.print("Enter amount to deposit: ");
-					double depositAmount = scanner.nextDouble();
-					account.deposit(depositAmount);
-					break;
-				case 2:
-					System.out.print("Enter amount to withdraw: ");
-					double withdrawAmount = scanner.nextDouble();
-					account.withdraw(withdrawAmount);
-					break;
-				case 3:
-					account.displayBalance();
-					break;
-				case 4:
-					System.out.println("Thank you for banking with us!");
-					break;
-				default:
-					System.out.println("Invalid option. Please try again.");
-			}
-		} while (choice != 4);
+        do {
+            System.out.println("\n--- ATM Menu ---");
+            System.out.println("1. Deposit");
+            System.out.println("2. Withdraw");
+            System.out.println("3. Check Balance");
+            System.out.println("4. Exit");
+            System.out.print("Choose an option: ");
+            menuChoice = inputScanner.nextInt();
 
-		scanner.close();
-	}
+            switch (menuChoice) {
+                case 1:
+                    System.out.print("Enter amount to deposit: ");
+                    double depositValue = inputScanner.nextDouble();
+                    userAccount.depositAmount(depositValue);
+                    break;
+                case 2:
+                    System.out.print("Enter amount to withdraw: ");
+                    double withdrawValue = inputScanner.nextDouble();
+                    userAccount.withdrawAmount(withdrawValue);
+                    break;
+                case 3:
+                    userAccount.showBalance();
+                    break;
+                case 4:
+                    System.out.println("Thank you for banking with us!");
+                    break;
+                default:
+                    System.out.println("Invalid option. Please try again.");
+            }
+        } while (menuChoice != 4);
+
+        inputScanner.close();
+    }
 }
