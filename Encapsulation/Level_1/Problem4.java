@@ -1,56 +1,45 @@
-public class Problem4 {
-    public static void main(String[] args) {
-        BankAccount[] accounts = new BankAccount[] {
-            new SavingsAccount("S001","Raj",10000),
-            new CurrentAccount("C001","Priya",5000)
+public class Problem3{
+    public static void main(String[] args){
+        Vehicle[] vehicles=new Vehicle[]{
+            new Car("KA-01-1234",2000),
+            new Bike("KA-02-2222",500),
+            new Truck("KA-03-3333",5000)
         };
-        accounts[0].deposit(2000);
-        accounts[1].withdraw(1000);
-        for (BankAccount a : accounts) {
-            System.out.println(a.getHolderName() + " Balance: " + a.getBalance() + " Interest: " + a.calculateInterest());
+        int days=3;
+        for(Vehicle v:vehicles){
+            System.out.println(v.getVehicleNumber()+"("+v.getType()+")");
+            System.out.println("Rental for "+days+" days:"+v.calculateRentalCost(days));
+            if(v instanceof Insurable) System.out.println(((Insurable)v).getInsuranceDetails()+",Insurance:"+((Insurable)v).calculateInsurance());
+            System.out.println("----");
         }
-        Loanable loanable = new SavingsAccount("S002","Maya",20000);
-        System.out.println(loanable.applyForLoan(15000));
     }
 }
-
-abstract class BankAccount {
-    private String accountNumber;
-    private String holderName;
-    private double balance;
-    public BankAccount(String no, String name, double bal) { this.accountNumber=no; this.holderName=name; this.balance=bal; }
-    public String getAccountNumber() { return accountNumber; }
-    public String getHolderName() { return holderName; }
-    public double getBalance() { return balance; }
-
-    public void deposit(double amount) { if(amount>0) balance += amount; }
-    public boolean withdraw(double amount) { if(amount>0 && amount<=balance) { balance -= amount; return true; } return false; }
-    protected void setBalance(double b){ this.balance = b; }
-
-    public abstract double calculateInterest();
+abstract class Vehicle{
+    private String vNo;
+    private String vKind;
+    private double ratePerDay;
+    public Vehicle(String num,String kind,double rate){this.vNo=num;this.vKind=kind;this.ratePerDay=rate;}
+    public String getVehicleNumber(){return vNo;}
+    public String getType(){return vKind;}
+    protected double getRentalRate(){return ratePerDay;}
+    public abstract double calculateRentalCost(int days);
 }
-
-interface Loanable {
-    String applyForLoan(double amount);
-    boolean calculateLoanEligibility(double amount);
+interface Insurable{double calculateInsurance();String getInsuranceDetails();}
+class Car extends Vehicle implements Insurable{
+    private String polId="CAR-POL-123";
+    public Car(String num,double rate){super(num,"Car",rate);}
+    @Override public double calculateRentalCost(int days){return getRentalRate()*days;}
+    @Override public double calculateInsurance(){return 300;}
+    @Override public String getInsuranceDetails(){return "CarPolicy:"+polId;}
 }
-
-class SavingsAccount extends BankAccount implements Loanable {
-    public SavingsAccount(String no, String name, double bal) { super(no,name,bal); }
-    @Override
-    public double calculateInterest() { return getBalance() * 0.04; } // 4% simple
-    @Override
-    public String applyForLoan(double amount) {
-        return calculateLoanEligibility(amount) ? "Loan Approved" : "Loan Denied";
-    }
-    @Override
-    public boolean calculateLoanEligibility(double amount) {
-        return getBalance() >= amount * 0.2; // must have 20% of amount
-    }
+class Bike extends Vehicle{
+    public Bike(String num,double rate){super(num,"Bike",rate);}
+    @Override public double calculateRentalCost(int days){return getRentalRate()*days*0.8;}
 }
-
-class CurrentAccount extends BankAccount {
-    public CurrentAccount(String no, String name, double bal) { super(no,name,bal); }
-    @Override
-    public double calculateInterest() { return 0; } // no interest on current
+class Truck extends Vehicle implements Insurable{
+    private String polId="TRK-POL-789";
+    public Truck(String num,double rate){super(num,"Truck",rate);}
+    @Override public double calculateRentalCost(int days){return getRentalRate()*days*1.5;}
+    @Override public double calculateInsurance(){return 1000;}
+    @Override public String getInsuranceDetails(){return "TruckPolicy:"+polId;}
 }
