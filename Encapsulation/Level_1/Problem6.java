@@ -1,13 +1,13 @@
 public class Problem6 {
     public static void main(String[] args) {
-        FoodItem[] order = new FoodItem[] {
+        FoodItem[] foodOrder = new FoodItem[] {
             new VegItem("Paneer Butter Masala", 250, 2),
             new NonVegItem("Chicken Curry", 300, 1)
         };
-        for (FoodItem fi : order) {
-            System.out.println(fi.getItemDetails() + " Total: " + fi.calculateTotalPrice());
-            if (fi instanceof Discountable) {
-                System.out.println("After Discount: " + ((Discountable)fi).applyDiscount());
+        for (FoodItem food : foodOrder) {
+            System.out.println(food.getItemDetails() + " Total: " + food.calculateTotalPrice());
+            if (food instanceof Discountable) {
+                System.out.println("After Discount: " + ((Discountable)food).applyDiscount());
             }
             System.out.println("----");
         }
@@ -15,14 +15,19 @@ public class Problem6 {
 }
 
 abstract class FoodItem {
-    private String itemName;
-    private double price;
-    private int quantity;
-    public FoodItem(String itemName, double price, int quantity) { this.itemName=itemName; this.price=price; this.quantity=quantity; }
-    public String getItemName(){return itemName;}
-    public double getPrice(){return price;}
-    public int getQuantity(){return quantity;}
-    public String getItemDetails(){ return itemName+" x"+quantity+" @"+price; }
+    private String foodName;
+    private double foodPrice;
+    private int foodQty;
+
+    public FoodItem(String foodName, double foodPrice, int foodQty) { 
+        this.foodName = foodName; 
+        this.foodPrice = foodPrice; 
+        this.foodQty = foodQty; 
+    }
+    public String getFoodName(){ return foodName; }
+    public double getFoodPrice(){ return foodPrice; }
+    public int getFoodQty(){ return foodQty; }
+    public String getItemDetails(){ return foodName+" x"+foodQty+" @"+foodPrice; }
     public abstract double calculateTotalPrice();
 }
 
@@ -34,7 +39,7 @@ interface Discountable {
 class VegItem extends FoodItem implements Discountable {
     public VegItem(String name,double price,int qty){ super(name,price,qty); }
     @Override
-    public double calculateTotalPrice(){ return getPrice()*getQuantity(); }
+    public double calculateTotalPrice(){ return getFoodPrice() * getFoodQty(); }
     @Override
     public double applyDiscount(){ return calculateTotalPrice() * 0.1; } // 10% off
     @Override
@@ -44,7 +49,7 @@ class VegItem extends FoodItem implements Discountable {
 class NonVegItem extends FoodItem implements Discountable {
     public NonVegItem(String name,double price,int qty){ super(name,price,qty); }
     @Override
-    public double calculateTotalPrice(){ return getPrice()*getQuantity() + 50; } // extra charge
+    public double calculateTotalPrice(){ return getFoodPrice() * getFoodQty() + 50; } // extra charge
     @Override
     public double applyDiscount(){ return calculateTotalPrice() * 0.05; } // 5%
     @Override
