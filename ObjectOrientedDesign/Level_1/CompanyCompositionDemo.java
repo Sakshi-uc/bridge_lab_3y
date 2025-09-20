@@ -1,46 +1,71 @@
 import java.util.*;
 
 class Employee {
-    private String name;
-    public Employee(String name) { this.name = name; }
-    public String getName() { return name; }
+    private String employeeName;
+
+    public Employee(String employeeName) {
+        this.employeeName = employeeName;
+    }
+
+    public String getEmployeeName() {
+        return employeeName;
+    }
 }
 
 class Department {
-    private String deptName;
-    private List<Employee> employees = new ArrayList<>();
-    public Department(String deptName) { this.deptName = deptName; }
-    public void addEmployee(Employee e) { employees.add(e); }
-    public void showEmployees() {
-        System.out.println("Department: " + deptName);
-        for (Employee e : employees) System.out.println(" - " + e.getName());
+    private String departmentName;
+    private List<Employee> employeeList = new ArrayList<>();
+
+    public Department(String departmentName) {
+        this.departmentName = departmentName;
+    }
+
+    public void addEmployee(Employee employeeObj) {
+        employeeList.add(employeeObj);
+    }
+
+    public void displayEmployees() {
+        System.out.println("Department: " + departmentName);
+        for (Employee employeeObj : employeeList) {
+            System.out.println(" - " + employeeObj.getEmployeeName());
+        }
     }
 }
 
 class Company {
     private String companyName;
-    private List<Department> departments = new ArrayList<>();
-    public Company(String name) { this.companyName = name; }
-    public void addDepartment(Department d) { departments.add(d); }
-    public void showCompanyDetails() {
+    private List<Department> departmentList = new ArrayList<>();
+
+    public Company(String companyName) {
+        this.companyName = companyName;
+    }
+
+    public void addDepartment(Department departmentObj) {
+        departmentList.add(departmentObj);
+    }
+
+    public void displayCompanyDetails() {
         System.out.println("Company: " + companyName);
-        for (Department d : departments) d.showEmployees();
+        for (Department departmentObj : departmentList) {
+            departmentObj.displayEmployees();
+        }
     }
 }
 
 public class CompanyCompositionDemo {
     public static void main(String[] args) {
-        Company comp = new Company("TechCorp");
-        Department d1 = new Department("IT");
-        Department d2 = new Department("HR");
+        Company companyObj = new Company("TechCorp");
 
-        d1.addEmployee(new Employee("Alice"));
-        d1.addEmployee(new Employee("Bob"));
-        d2.addEmployee(new Employee("Charlie"));
+        Department itDept = new Department("IT");
+        Department hrDept = new Department("HR");
 
-        comp.addDepartment(d1);
-        comp.addDepartment(d2);
+        itDept.addEmployee(new Employee("Alice"));
+        itDept.addEmployee(new Employee("Bob"));
+        hrDept.addEmployee(new Employee("Charlie"));
 
-        comp.showCompanyDetails();
+        companyObj.addDepartment(itDept);
+        companyObj.addDepartment(hrDept);
+
+        companyObj.displayCompanyDetails();
     }
 }
