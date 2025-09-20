@@ -13,7 +13,9 @@ public class SpringSeason {
         System.out.print("Enter day: ");
         int day = sc.nextInt();
 
-        if (isSpring(month, day)) System.out.println("Its a Spring Season");
-        else System.out.println("Not a Spring Season");
+        if (isSpring(month, day))
+            System.out.println("It's Spring Season");
+        else
+            System.out.println("Not a Spring Season");
     }
 }
