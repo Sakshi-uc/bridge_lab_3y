@@ -1,39 +1,47 @@
 import java.util.*;
 
 class Doctor {
-    private String name;
-    private List<Patient> patients = new ArrayList<>();
-    public Doctor(String name){ this.name=name; }
-    public String getName(){ return name; }
-    public void consult(Patient p){
-        patients.add(p);
-        p.addDoctor(this);
-        System.out.println("Doctor " + name + " consulted patient " + p.getName());
+    private String doctorName;
+    private List<Patient> patientList = new ArrayList<>();
+
+    public Doctor(String name){ this.doctorName = name; }
+
+    public String getName(){ return doctorName; }
+
+    public void consult(Patient patient){
+        patientList.add(patient);
+        patient.addDoctor(this);
+        System.out.println("Doctor " + doctorName + " consulted patient " + patient.getName());
     }
 }
 
 class Patient {
-    private String name;
-    private List<Doctor> doctors = new ArrayList<>();
-    public Patient(String name){ this.name=name; }
-    public String getName(){ return name; }
-    public void addDoctor(Doctor d){ doctors.add(d); }
+    private String patientName;
+    private List<Doctor> doctorList = new ArrayList<>();
+
+    public Patient(String name){ this.patientName = name; }
+
+    public String getName(){ return patientName; }
+
+    public void addDoctor(Doctor doctor){ doctorList.add(doctor); }
 }
 
 class Hospital {
-    private String name;
-    public Hospital(String name){ this.name=name; }
+    private String hospitalName;
+
+    public Hospital(String name){ this.hospitalName = name; }
 }
 
 public class HospitalAssociationDemo {
     public static void main(String[] args) {
-        Doctor d1 = new Doctor("Dr. Sharma");
-        Doctor d2 = new Doctor("Dr. Gupta");
-        Patient p1 = new Patient("Amit");
-        Patient p2 = new Patient("Sneha");
+        Doctor doctor1 = new Doctor("Dr. Sharma");
+        Doctor doctor2 = new Doctor("Dr. Gupta");
 
-        d1.consult(p1);
-        d2.consult(p1);
-        d2.consult(p2);
+        Patient patient1 = new Patient("Amit");
+        Patient patient2 = new Patient("Sneha");
+
+        doctor1.consult(patient1);
+        doctor2.consult(patient1);
+        doctor2.consult(patient2);
     }
 }
