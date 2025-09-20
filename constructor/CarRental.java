@@ -1,31 +1,29 @@
 public class CarRental {
-    private String customerName;
-    private String carModel;
-    private int rentalDays;
-    private double dailyRate = 50.0; // Example rate
+    private String renterName;
+    private String vehicleModel;
+    private int numberOfDays;
+    private double dailyRate = 50.0;
 
-    
     public CarRental() {
-        this.customerName = "Unknown";
-        this.carModel = "Standard";
-        this.rentalDays = 1;
+        this.renterName = "Unknown";
+        this.vehicleModel = "Standard";
+        this.numberOfDays = 1;
     }
 
-    
-    public CarRental(String customerName, String carModel, int rentalDays) {
-        this.customerName = customerName;
-        this.carModel = carModel;
-        this.rentalDays = rentalDays;
+    public CarRental(String renterName, String vehicleModel, int numberOfDays) {
+        this.renterName = renterName;
+        this.vehicleModel = vehicleModel;
+        this.numberOfDays = numberOfDays;
     }
 
     public double calculateTotalCost() {
-        return rentalDays * dailyRate;
+        return numberOfDays * dailyRate;
     }
 
-    public String getCustomerName() { return customerName; }
-    public String getCarModel() { return carModel; }
-    public int getRentalDays() { return rentalDays; }
-    public void setCustomerName(String customerName) { this.customerName = customerName; }
-    public void setCarModel(String carModel) { this.carModel = carModel; }
-    public void setRentalDays(int rentalDays) { this.rentalDays = rentalDays; }
+    public String getRenterName() { return renterName; }
+    public String getVehicleModel() { return vehicleModel; }
+    public int getNumberOfDays() { return numberOfDays; }
+    public void setRenterName(String renterName) { this.renterName = renterName; }
+    public void setVehicleModel(String vehicleModel) { this.vehicleModel = vehicleModel; }
+    public void setNumberOfDays(int numberOfDays) { this.numberOfDays = numberOfDays; }
 }
