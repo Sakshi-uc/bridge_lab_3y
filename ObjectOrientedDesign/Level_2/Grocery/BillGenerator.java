@@ -1,21 +1,24 @@
 public class BillGenerator {
-    public double generateBill(Customer customer) {
-        double total = 0;
-        for (Product product : customer.getProducts()) {
-            total += product.getTotalPrice();
+    
+    public double calculateBill(Customer customerObj) {
+        double totalAmount = 0;
+        for (Product productObj : customerObj.getProductList()) {
+            totalAmount += productObj.getTotalCost();
         }
-        return total;
+        return totalAmount;
     }
 
-    public void printBill(Customer customer) {
-        System.out.println("Customer: " + customer.getName());
+    public void displayBill(Customer customerObj) {
+        System.out.println("Customer Name: " + customerObj.getCustomerName());
         System.out.println("Purchased Products:");
-        for (Product product : customer.getProducts()) {
-            System.out.println(" - " + product.getName() +
-                               " (" + product.getQuantity() + " units at $" +
-                               product.getPricePerUnit() + " per unit) → $" +
-                               product.getTotalPrice());
+
+        for (Product productObj : customerObj.getProductList()) {
+            System.out.println(" - " + productObj.getProductName() +
+                               " (" + productObj.getProductQuantity() + " units at $" +
+                               productObj.getUnitPrice() + " per unit) → $" +
+                               productObj.getTotalCost());
         }
-        System.out.println("Total Bill: $" + generateBill(customer));
+
+        System.out.println("Total Bill: $" + calculateBill(customerObj));
     }
 }
