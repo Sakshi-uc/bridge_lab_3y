@@ -1,10 +1,10 @@
 package JavaFundamental;
 
-public class addtwonumber {
+public class AddTwoNumbers {
     public static void main(String[] args) {
-        int num1 = 5;
-        int num2 = 10;
-        int sum = num1 + num2;
-        System.out.println("The sum of " + num1 + " and " + num2 + " is: " + sum);
+        int a = 5;
+        int b = 10;
+        int total = a + b;
+        System.out.println("The sum of " + a + " and " + b + " is: " + total);
     }
 }
