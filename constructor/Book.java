@@ -1,27 +1,24 @@
 public class Book {
-    private String title;
-    private String author;
-    private double price;
+    private String bookTitle;
+    private String bookAuthor;
+    private double bookPrice;
 
-    
     public Book() {
-        this.title = "Unknown";
-        this.author = "Unknown";
-        this.price = 0.0;
+        this.bookTitle = "Unknown";
+        this.bookAuthor = "Unknown";
+        this.bookPrice = 0.0;
     }
 
-
-    public Book(String title, String author, double price) {
-        this.title = title;
-        this.author = author;
-        this.price = price;
+    public Book(String bookTitle, String bookAuthor, double bookPrice) {
+        this.bookTitle = bookTitle;
+        this.bookAuthor = bookAuthor;
+        this.bookPrice = bookPrice;
     }
 
-    
-    public String getTitle() { return title; }
-    public String getAuthor() { return author; }
-    public double getPrice() { return price; }
-    public void setTitle(String title) { this.title = title; }
-    public void setAuthor(String author) { this.author = author; }
-    public void setPrice(double price) { this.price = price; }
+    public String getTitle() { return bookTitle; }
+    public String getAuthor() { return bookAuthor; }
+    public double getPrice() { return bookPrice; }
+    public void setTitle(String bookTitle) { this.bookTitle = bookTitle; }
+    public void setAuthor(String bookAuthor) { this.bookAuthor = bookAuthor; }
+    public void setPrice(double bookPrice) { this.bookPrice = bookPrice; }
 }
