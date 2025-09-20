@@ -1,8 +1,8 @@
 import java.util.Scanner;
 
 public class QuotientRemainder {
-    public static int[] findRemainderAndQuotient(int number, int divisor) {
-        return new int[]{number % divisor, number / divisor};
+    public static int[] calculate(int number, int divisor) {
+        return new int[]{number / divisor, number % divisor};
     }
 
     public static void main(String[] args) {
@@ -12,7 +12,8 @@ public class QuotientRemainder {
         System.out.print("Enter divisor: ");
         int divisor = sc.nextInt();
 
-        int[] result = findRemainderAndQuotient(number, divisor);
-        System.out.println("Quotient: " + result[1] + ", Remainder: " + result[0]);
+        int[] result = calculate(number, divisor);
+        System.out.println("Quotient: " + result[0] + ", Remainder: " + result[1]);
     }
 }
+
