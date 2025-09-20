@@ -1,35 +1,53 @@
 import java.util.*;
 
 class Customer {
-    private String name;
-    private double balance;
-    public Customer(String name) { this.name = name; }
-    public void deposit(double amount) { balance += amount; }
-    public void viewBalance() { System.out.println(name + "'s Balance: " + balance); }
-    public String getName() { return name; }
+    private String customerName;
+    private double accountBalance;
+
+    public Customer(String customerName) {
+        this.customerName = customerName;
+    }
+
+    public void depositAmount(double depositValue) {
+        accountBalance += depositValue;
+    }
+
+    public void showBalance() {
+        System.out.println(customerName + "'s Balance: " + accountBalance);
+    }
+
+    public String getCustomerName() {
+        return customerName;
+    }
 }
 
 class Bank {
-    private String bankName;
-    private List<Customer> customers = new ArrayList<>();
-    public Bank(String bankName) { this.bankName = bankName; }
-    public void openAccount(Customer c, double initialDeposit) {
-        customers.add(c);
-        c.deposit(initialDeposit);
-        System.out.println(c.getName() + " opened account in " + bankName + " with " + initialDeposit);
+    private String bankTitle;
+    private List<Customer> customerList = new ArrayList<>();
+
+    public Bank(String bankTitle) {
+        this.bankTitle = bankTitle;
+    }
+
+    public void createAccount(Customer customerObj, double initialDeposit) {
+        customerList.add(customerObj);
+        customerObj.depositAmount(initialDeposit);
+        System.out.println(customerObj.getCustomerName() + " opened account in " + bankTitle + " with " + initialDeposit);
     }
 }
 
 public class BankAssociationDemo {
     public static void main(String[] args) {
-        Bank bank = new Bank("SBI");
-        Customer c1 = new Customer("Ravi");
-        Customer c2 = new Customer("Neha");
+        Bank bankObj = new Bank("SBI");
 
-        bank.openAccount(c1, 5000);
-        bank.openAccount(c2, 8000);
+        Customer customerOne = new Customer("Ravi");
+        Customer customerTwo = new Customer("Neha");
 
-        c1.viewBalance();
-        c2.viewBalance();
+        bankObj.createAccount(customerOne, 5000);
+        bankObj.createAccount(customerTwo, 8000);
+
+        customerOne.showBalance();
+        customerTwo.showBalance();
     }
 }
+
