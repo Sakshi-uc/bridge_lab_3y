@@ -21,4 +21,3 @@ public class Student {
         subjects.add(subject);
     }
 }
-
