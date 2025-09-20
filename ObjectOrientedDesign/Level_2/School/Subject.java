@@ -1,17 +1,17 @@
 public class Subject {
-    private String name;
-    private int marks;
+    private String subjectName;
+    private int subjectMarks;
 
-    public Subject(String name, int marks) {
-        this.name = name;
-        this.marks = marks;
+    public Subject(String subjectName, int subjectMarks) {
+        this.subjectName = subjectName;
+        this.subjectMarks = subjectMarks;
     }
 
     public String getName() {
-        return name;
+        return subjectName;
     }
 
     public int getMarks() {
-        return marks;
+        return subjectMarks;
     }
 }
