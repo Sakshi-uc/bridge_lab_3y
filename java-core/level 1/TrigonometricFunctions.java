@@ -1,19 +1,19 @@
 import java.util.Scanner;
 
-public class TrigonometricFunctions {
-    public static double[] calculateTrigonometricFunctions(double angle) {
-        double radians = Math.toRadians(angle);
-        return new double[]{Math.sin(radians), Math.cos(radians), Math.tan(radians)};
+public class TrigFunctions {
+    public static double[] trigValues(double deg) {
+        double rad = Math.toRadians(deg);
+        return new double[]{Math.sin(rad), Math.cos(rad), Math.tan(rad)};
     }
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         System.out.print("Enter angle in degrees: ");
-        double angle = sc.nextDouble();
+        double deg = sc.nextDouble();
 
-        double[] result = calculateTrigonometricFunctions(angle);
-        System.out.println("Sine: " + result[0]);
-        System.out.println("Cosine: " + result[1]);
-        System.out.println("Tangent: " + result[2]);
+        double[] vals = trigValues(deg);
+        System.out.println("Sine: " + vals[0]);
+        System.out.println("Cosine: " + vals[1]);
+        System.out.println("Tangent: " + vals[2]);
     }
 }
