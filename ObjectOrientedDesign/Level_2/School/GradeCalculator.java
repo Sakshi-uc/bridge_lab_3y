@@ -1,19 +1,20 @@
 public class GradeCalculator {
+
     public String calculateGrade(Student student) {
         if (student.getSubjects().isEmpty()) {
             return "No subjects found!";
         }
 
-        int total = 0;
-        for (Subject subject : student.getSubjects()) {
-            total += subject.getMarks();
+        int totalMarks = 0;
+        for (Subject sub : student.getSubjects()) {
+            totalMarks += sub.getMarks();
         }
 
-        double avg = (double) total / student.getSubjects().size();
+        double averageMarks = (double) totalMarks / student.getSubjects().size();
 
-        if (avg >= 90) return "A";
-        else if (avg >= 75) return "B";
-        else if (avg >= 50) return "C";
+        if (averageMarks >= 90) return "A";
+        else if (averageMarks >= 75) return "B";
+        else if (averageMarks >= 50) return "C";
         else return "F";
     }
 }
