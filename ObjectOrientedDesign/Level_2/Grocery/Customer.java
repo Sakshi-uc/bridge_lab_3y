@@ -2,22 +2,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Customer {
-    private String name;
-    private List<Product> products = new ArrayList<>();
+    private String customerName;
+    private List<Product> productList = new ArrayList<>();
 
-    public Customer(String name) {
-        this.name = name;
+    public Customer(String customerName) {
+        this.customerName = customerName;
     }
 
-    public String getName() {
-        return name;
+    public String getCustomerName() {
+        return customerName;
     }
 
-    public List<Product> getProducts() {
-        return products;
+    public List<Product> getProductList() {
+        return productList;
     }
 
-    public void addProduct(Product product) {
-        products.add(product);
+    public void addProduct(Product productObj) {
+        productList.add(productObj);
     }
 }
