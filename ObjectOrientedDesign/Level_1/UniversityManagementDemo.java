@@ -1,43 +1,43 @@
 import java.util.*;
 
 class Professor {
-    private String name;
-    public Professor(String name){ this.name=name; }
-    public String getName(){ return name; }
+    private String professorName;
+    public Professor(String professorName){ this.professorName = professorName; }
+    public String getProfessorName(){ return professorName; }
 }
 
 class CourseUMS {
-    private String courseName;
-    private Professor professor;
-    private List<StudentUMS> students = new ArrayList<>();
-    public CourseUMS(String courseName){ this.courseName=courseName; }
-    public void assignProfessor(Professor p){ this.professor=p; }
-    public void enroll(StudentUMS s){ students.add(s); }
+    private String courseTitle;
+    private Professor assignedProfessor;
+    private List<StudentUMS> enrolledStudents = new ArrayList<>();
+    public CourseUMS(String courseTitle){ this.courseTitle = courseTitle; }
+    public void assignProfessor(Professor professor){ this.assignedProfessor = professor; }
+    public void enroll(StudentUMS student){ enrolledStudents.add(student); }
     public void showDetails(){
-        System.out.println("Course: " + courseName);
-        if(professor!=null) System.out.println("Professor: " + professor.getName());
-        for(StudentUMS s: students) System.out.println(" - " + s.getName());
+        System.out.println("Course: " + courseTitle);
+        if(assignedProfessor != null) System.out.println("Professor: " + assignedProfessor.getProfessorName());
+        for(StudentUMS s: enrolledStudents) System.out.println(" - " + s.getStudentName());
     }
 }
 
 class StudentUMS {
-    private String name;
-    public StudentUMS(String name){ this.name=name; }
-    public String getName(){ return name; }
-    public void enrollCourse(CourseUMS c){ c.enroll(this); }
+    private String studentName;
+    public StudentUMS(String studentName){ this.studentName = studentName; }
+    public String getStudentName(){ return studentName; }
+    public void enrollCourse(CourseUMS course){ course.enroll(this); }
 }
 
 public class UniversityManagementDemo {
     public static void main(String[] args) {
-        StudentUMS s1 = new StudentUMS("Karan");
-        StudentUMS s2 = new StudentUMS("Meera");
-        Professor p = new Professor("Dr. Rao");
-        CourseUMS c1 = new CourseUMS("Algorithms");
+        StudentUMS student1 = new StudentUMS("Karan");
+        StudentUMS student2 = new StudentUMS("Meera");
+        Professor professor = new Professor("Dr. Rao");
+        CourseUMS algorithmsCourse = new CourseUMS("Algorithms");
 
-        c1.assignProfessor(p);
-        s1.enrollCourse(c1);
-        s2.enrollCourse(c1);
+        algorithmsCourse.assignProfessor(professor);
+        student1.enrollCourse(algorithmsCourse);
+        student2.enrollCourse(algorithmsCourse);
 
-        c1.showDetails();
+        algorithmsCourse.showDetails();
     }
 }
