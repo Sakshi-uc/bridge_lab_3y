@@ -1,22 +1,42 @@
-import java.util.*;
+import java.util.Scanner;
 
 public class CollinearPoints {
-    static boolean collinearByArea(double x1,double y1,double x2,double y2,double x3,double y3){
-        double area = 0.5 * ( x1*(y2-y3) + x2*(y3-y1) + x3*(y1-y2) );
-        return Math.abs(area) < 1e-9;
+    // Check collinearity using area of triangle method
+    static boolean arePointsCollinearByArea(double px1, double py1,
+                                            double px2, double py2,
+                                            double px3, double py3) {
+        double triangleArea = 0.5 * (px1 * (py2 - py3) + px2 * (py3 - py1) + px3 * (py1 - py2));
+        return Math.abs(triangleArea) < 1e-9;
     }
-    static boolean collinearBySlope(double x1,double y1,double x2,double y2,double x3,double y3){
-        // Handle verticals safely: (y2-y1)*(x3-x1) == (y3-y1)*(x2-x1)
-        double lhs = (y2-y1)*(x3-x1);
-        double rhs = (y3-y1)*(x2-x1);
+
+    // Check collinearity using slope method
+    static boolean arePointsCollinearBySlope(double px1, double py1,
+                                             double px2, double py2,
+                                             double px3, double py3) {
+        double lhs = (py2 - py1) * (px3 - px1);
+        double rhs = (py3 - py1) * (px2 - px1);
         return Math.abs(lhs - rhs) < 1e-9;
     }
-    public static void main(String[] args){
-        Scanner sc=new Scanner(System.in);
-        System.out.print("Enter x1 y1: "); double x1=sc.nextDouble(), y1=sc.nextDouble();
-        System.out.print("Enter x2 y2: "); double x2=sc.nextDouble(), y2=sc.nextDouble();
-        System.out.print("Enter x3 y3: "); double x3=sc.nextDouble(), y3=sc.nextDouble();
-        System.out.println("Collinear (slope)? " + (collinearBySlope(x1,y1,x2,y2,x3,y3)?"Yes":"No"));
-        System.out.println("Collinear (area)?  " + (collinearByArea(x1,y1,x2,y2,x3,y3)?"Yes":"No"));
+
+    public static void main(String[] args) {
+        Scanner inputScanner = new Scanner(System.in);
+
+        System.out.print("Enter coordinates of point 1 (x y): ");
+        double point1X = inputScanner.nextDouble();
+        double point1Y = inputScanner.nextDouble();
+
+        System.out.print("Enter coordinates of point 2 (x y): ");
+        double point2X = inputScanner.nextDouble();
+        double point2Y = inputScanner.nextDouble();
+
+        System.out.print("Enter coordinates of point 3 (x y): ");
+        double point3X = inputScanner.nextDouble();
+        double point3Y = inputScanner.nextDouble();
+
+        boolean slopeCollinear = arePointsCollinearBySlope(point1X, point1Y, point2X, point2Y, point3X, point3Y);
+        boolean areaCollinear = arePointsCollinearByArea(point1X, point1Y, point2X, point2Y, point3X, point3Y);
+
+        System.out.println("Collinear (slope method)? " + (slopeCollinear ? "Yes" : "No"));
+        System.out.println("Collinear (area method)?  " + (areaCollinear ? "Yes" : "No"));
     }
 }
