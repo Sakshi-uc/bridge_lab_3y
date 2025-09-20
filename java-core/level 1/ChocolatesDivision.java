@@ -1,18 +1,49 @@
-import java.util.Scanner;
+package com.bridgelabz.oops.inbuiltfunction;
 
-public class ChocolatesDivision {
-    public static int[] findRemainderAndQuotient(int chocolates, int children) {
-        return new int[]{chocolates % children, chocolates / children};
+public class Student {
+    private static String universityName;
+    private static int totalStudents = 0;
+    private final int rollNumber;
+    private String name;
+    private char grade;
+
+    public Student(String name, int rollNumber, char grade) {
+        this.name = name;
+        this.rollNumber = rollNumber;
+        this.grade = grade;
+        totalStudents++;
+    }
+
+    public static void setUniversityName(String name) {
+        universityName = name;
+    }
+
+    public static void displayTotalStudents() {
+        System.out.println("Total Students Enrolled: " + totalStudents);
+    }
+
+    public void displayStudentDetails() {
+        System.out.println("University Name: " + universityName);
+        System.out.println("Roll Number: " + rollNumber);
+        System.out.println("Name: " + name);
+        System.out.println("Grade: " + grade);
+    }
+
+    public void updateGrade(char newGrade) {
+        this.grade = newGrade;
+        System.out.println("Grade updated to: " + newGrade);
     }
 
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        System.out.print("Enter number of chocolates: ");
-        int chocolates = sc.nextInt();
-        System.out.print("Enter number of children: ");
-        int children = sc.nextInt();
-
-        int[] result = findRemainderAndQuotient(chocolates, children);
-        System.out.println("Each child gets: " + result[1] + ", Remaining chocolates: " + result[0]);
+        Student.setUniversityName("Global University");
+        Student student1 = new Student("Hemashree", 101, 'A');
+        Student student2 = new Student("Sharmila", 102, 'B');
+        Student.displayTotalStudents();
+        student1.displayStudentDetails();
+        System.out.println();
+        student2.displayStudentDetails();
+        student2.updateGrade('A');
+        System.out.println();
+        student2.displayStudentDetails();
     }
 }
