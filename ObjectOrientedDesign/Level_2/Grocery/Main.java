@@ -10,6 +10,3 @@ public class Main {
 
         // Generate and print bill
         BillGenerator billGen = new BillGenerator();
-        billGen.printBill(alice);
-    }
-}
