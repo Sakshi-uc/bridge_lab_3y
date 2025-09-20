@@ -1,50 +1,27 @@
-package com.bridgelabz.inheritance;
-class Employee {
-    String name; int id; double salary;
-    Employee(String name, int id, double salary) {
-        this.name = name; this.id = id; this.salary = salary;
+public class Person {
+    private String name;
+    private int age;
+
+    
+    public Person() {
+        this.name = "Unknown";
+        this.age = 0;
     }
-    void displayDetails() {
-        System.out.println("Name: " + name + ", ID: " + id + ", Salary: " + salary);
+
+    
+    public Person(String name, int age) {
+        this.name = name;
+        this.age = age;
     }
-}
-class Manager extends Employee {
-    int teamSize;
-    Manager(String name, int id, double salary, int teamSize) {
-        super(name,id,salary); this.teamSize = teamSize;
+
+    
+    public Person(Person other) {
+        this.name = other.name;
+        this.age = other.age;
     }
-    @Override void displayDetails() {
-        super.displayDetails();
-        System.out.println("Team Size: " + teamSize);
-    }
-}
-class Developer extends Employee {
-    String language;
-    Developer(String name, int id, double salary, String language) {
-        super(name,id,salary); this.language = language;
-    }
-    @Override void displayDetails() {
-        super.displayDetails();
-        System.out.println("Language: " + language);
-    }
-}
-class Intern extends Employee {
-    int duration;
-    Intern(String name, int id, double salary, int duration) {
-        super(name,id,salary); this.duration = duration;
-    }
-    @Override void displayDetails() {
-        super.displayDetails();
-        System.out.println("Internship Duration: " + duration + " months");
-    }
-}
-public class EmployeeTest {
-    public static void main(String[] args) {
-        Employee[] emps = {
-            new Manager("Alice",1,80000,10),
-            new Developer("Bob",2,60000,"Java"),
-            new Intern("Charlie",3,20000,6)
-        };
-        for(Employee e: emps) e.displayDetails();
-    }
+
+    public String getName() { return name; }
+    public int getAge() { return age; }
+    public void setName(String name) { this.name = name; }
+    public void setAge(int age) { this.age = age; }
 }
