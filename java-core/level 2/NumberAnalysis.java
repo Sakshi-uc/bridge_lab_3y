@@ -1,30 +1,43 @@
 import java.util.Scanner;
 
 public class NumberAnalysis {
-    public static boolean isPositive(int n) { return n >= 0; }
-    public static boolean isEven(int n) { return n % 2 == 0; }
-    public static int compare(int a, int b) {
-        if (a > b) return 1;
-        else if (a == b) return 0;
+    // Check if a number is positive or zero
+    public static boolean isPositive(int number) {
+        return number >= 0;
+    }
+
+    // Check if a number is even
+    public static boolean isEven(int number) {
+        return number % 2 == 0;
+    }
+
+    // Compare two numbers: return 1 if first>second, 0 if equal, -1 if first<second
+    public static int compareNumbers(int first, int second) {
+        if (first > second) return 1;
+        else if (first == second) return 0;
         else return -1;
     }
 
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int[] arr = new int[5];
+        Scanner scanner = new Scanner(System.in);
+        int[] numbers = new int[5];
+
+        // Input numbers and check positivity and parity
         for (int i = 0; i < 5; i++) {
-            System.out.print("Enter number " + (i+1) + ": ");
-            arr[i] = sc.nextInt();
-            if (!isPositive(arr[i])) {
+            System.out.print("Enter number " + (i + 1) + ": ");
+            numbers[i] = scanner.nextInt();
+            if (!isPositive(numbers[i])) {
                 System.out.println("Negative");
             } else {
                 System.out.print("Positive ");
-                System.out.println(isEven(arr[i]) ? "Even" : "Odd");
+                System.out.println(isEven(numbers[i]) ? "Even" : "Odd");
             }
         }
-        int cmp = compare(arr[0], arr[4]);
-        if (cmp == 0) System.out.println("First and last are equal");
-        else if (cmp > 0) System.out.println("First > Last");
-        else System.out.println("First < Last");
+
+        // Compare first and last number
+        int comparisonResult = compareNumbers(numbers[0], numbers[4]);
+        if (comparisonResult == 0) System.out.println("First and last numbers are equal");
+        else if (comparisonResult > 0) System.out.println("First number > Last number");
+        else System.out.println("First number < Last number");
     }
 }
