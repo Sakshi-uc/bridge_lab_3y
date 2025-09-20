@@ -1,26 +1,49 @@
 import java.util.*;
 
 public class FactorsExtended {
-    static int[] factors(int n){
-        int c=0; for(int i=1;i<=n;i++) if(n%i==0) c++;
-        int[] a=new int[c]; int k=0;
-        for(int i=1;i<=n;i++) if(n%i==0) a[k++]=i;
-        return a;
+    static int[] getFactors(int number){
+        int count=0;
+        for(int i=1;i<=number;i++) if(number%i==0) count++;
+        int[] factorsArr=new int[count]; 
+        int index=0;
+        for(int i=1;i<=number;i++) if(number%i==0) factorsArr[index++]=i;
+        return factorsArr;
     }
-    static int greatestFactor(int[] f){ int max=f[0]; for(int v:f) if(v>max) max=v; return max; }
-    static long sum(int[] f){ long s=0; for(int v:f) s+=v; return s; }
-    static long product(int[] f){ long p=1; for(int v:f) p*=v; return p; }
-    static double productCubes(int[] f){ double p=1.0; for(int v:f) p*=Math.pow(v,3); return p; }
+
+    static int getGreatestFactor(int[] factorsArr){ 
+        int max=factorsArr[0]; 
+        for(int val : factorsArr) if(val>max) max=val; 
+        return max; 
+    }
+
+    static long sumFactors(int[] factorsArr){ 
+        long sum=0; 
+        for(int val : factorsArr) sum+=val; 
+        return sum; 
+    }
+
+    static long productFactors(int[] factorsArr){ 
+        long product=1; 
+        for(int val : factorsArr) product*=val; 
+        return product; 
+    }
+
+    static double productOfCubes(int[] factorsArr){ 
+        double product=1.0; 
+        for(int val : factorsArr) product*=Math.pow(val,3); 
+        return product; 
+    }
 
     public static void main(String[] args){
-        Scanner sc=new Scanner(System.in);
+        Scanner scanner=new Scanner(System.in);
         System.out.print("Enter number: ");
-        int n=sc.nextInt();
-        int[] f=factors(n);
-        System.out.println("Factors: " + Arrays.toString(f));
-        System.out.println("Greatest factor: " + greatestFactor(f));
-        System.out.println("Sum: " + sum(f));
-        System.out.println("Product: " + product(f));
-        System.out.println("Product of cubes: " + productCubes(f));
+        int number=scanner.nextInt();
+
+        int[] factorsArr=getFactors(number);
+        System.out.println("Factors: " + Arrays.toString(factorsArr));
+        System.out.println("Greatest factor: " + getGreatestFactor(factorsArr));
+        System.out.println("Sum: " + sumFactors(factorsArr));
+        System.out.println("Product: " + productFactors(factorsArr));
+        System.out.println("Product of cubes: " + productOfCubes(factorsArr));
     }
 }
