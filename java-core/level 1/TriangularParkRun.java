@@ -1,20 +1,20 @@
 import java.util.Scanner;
 
 public class TriangularParkRun {
-    public static double calculateRounds(double a, double b, double c) {
-        double perimeter = a + b + c;
-        return 5000 / perimeter;
+    public static double rounds(double x, double y, double z) {
+        double p = x + y + z;
+        return 5000 / p;
     }
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        System.out.print("Enter side a: ");
-        double a = sc.nextDouble();
-        System.out.print("Enter side b: ");
-        double b = sc.nextDouble();
-        System.out.print("Enter side c: ");
-        double c = sc.nextDouble();
+        System.out.print("Enter side x: ");
+        double x = sc.nextDouble();
+        System.out.print("Enter side y: ");
+        double y = sc.nextDouble();
+        System.out.print("Enter side z: ");
+        double z = sc.nextDouble();
 
-        System.out.println("Number of rounds: " + calculateRounds(a, b, c));
+        System.out.println("Number of rounds: " + rounds(x, y, z));
     }
 }
