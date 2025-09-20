@@ -10,7 +10,9 @@ public class SmallestLargest {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         System.out.print("Enter 3 numbers: ");
-        int a = sc.nextInt(), b = sc.nextInt(), c = sc.nextInt();
+        int a = sc.nextInt();
+        int b = sc.nextInt();
+        int c = sc.nextInt();
 
         int[] result = findSmallestAndLargest(a, b, c);
         System.out.println("Smallest: " + result[0] + ", Largest: " + result[1]);
