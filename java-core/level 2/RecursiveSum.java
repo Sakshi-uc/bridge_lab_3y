@@ -1,23 +1,27 @@
 import java.util.Scanner;
 
 public class RecursiveSum {
-    public static int recursiveSum(int n) {
-        if (n == 0) return 0;
-        return n + recursiveSum(n - 1);
+    // Calculate sum of first n natural numbers recursively
+    public static int sumRecursive(int number) {
+        if (number == 0) return 0;
+        return number + sumRecursive(number - 1);
     }
 
-    public static int formulaSum(int n) {
-        return n * (n + 1) / 2;
+    // Calculate sum using formula
+    public static int sumFormula(int number) {
+        return number * (number + 1) / 2;
     }
 
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
         System.out.print("Enter a natural number: ");
-        int n = sc.nextInt();
-        int rec = recursiveSum(n);
-        int formula = formulaSum(n);
-        System.out.println("Recursive Sum = " + rec);
-        System.out.println("Formula Sum = " + formula);
-        System.out.println("Both are " + (rec == formula ? "equal" : "not equal"));
+        int n = scanner.nextInt();
+
+        int recursiveResult = sumRecursive(n);
+        int formulaResult = sumFormula(n);
+
+        System.out.println("Sum using recursion: " + recursiveResult);
+        System.out.println("Sum using formula: " + formulaResult);
+        System.out.println("Both results are " + (recursiveResult == formulaResult ? "equal" : "not equal"));
     }
 }
