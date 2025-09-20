@@ -4,7 +4,6 @@ public class LibraryBook {
     private double price;
     private boolean available;
 
-  
     public LibraryBook() {
         this.title = "Unknown";
         this.author = "Unknown";
