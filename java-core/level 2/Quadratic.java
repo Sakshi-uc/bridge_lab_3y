@@ -1,22 +1,33 @@
 import java.util.Scanner;
 
 public class Quadratic {
-    public static double[] findRoots(double a, double b, double c) {
-        double delta = b*b - 4*a*c;
-        if (delta < 0) return new double[]{};
-        else if (delta == 0) return new double[]{ -b / (2*a) };
+    // Calculate roots of quadratic equation ax^2 + bx + c = 0
+    public static double[] calculateRoots(double coeffA, double coeffB, double coeffC) {
+        double discriminant = coeffB * coeffB - 4 * coeffA * coeffC;
+        if (discriminant < 0) return new double[]{}; // No real roots
+        else if (discriminant == 0) return new double[]{ -coeffB / (2 * coeffA) }; // One real root
         else {
-            double sqrtDelta = Math.sqrt(delta);
-            return new double[]{ (-b + sqrtDelta)/(2*a), (-b - sqrtDelta)/(2*a) };
+            double sqrtDisc = Math.sqrt(discriminant);
+            return new double[]{
+                (-coeffB + sqrtDisc) / (2 * coeffA),
+                (-coeffB - sqrtDisc) / (2 * coeffA)
+            };
         }
     }
 
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        System.out.print("Enter a, b, c: ");
-        double a = sc.nextDouble(), b = sc.nextDouble(), c = sc.nextDouble();
-        double[] roots = findRoots(a, b, c);
-        if (roots.length == 0) System.out.println("No real roots");
-        else for (int i = 0; i < roots.length; i++) System.out.println("Root " + (i+1) + ": " + roots[i]);
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter coefficients a, b, c: ");
+        double a = scanner.nextDouble();
+        double b = scanner.nextDouble();
+        double c = scanner.nextDouble();
+
+        double[] roots = calculateRoots(a, b, c);
+        if (roots.length == 0) System.out.println("No real roots exist.");
+        else {
+            for (int i = 0; i < roots.length; i++) {
+                System.out.println("Root " + (i + 1) + ": " + roots[i]);
+            }
+        }
     }
 }
