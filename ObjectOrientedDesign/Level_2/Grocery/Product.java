@@ -1,27 +1,27 @@
 public class Product {
-    private String name;
-    private double quantity;
-    private double pricePerUnit;
+    private String productName;
+    private double productQuantity;
+    private double unitPrice;
 
-    public Product(String name, double quantity, double pricePerUnit) {
-        this.name = name;
-        this.quantity = quantity;
-        this.pricePerUnit = pricePerUnit;
+    public Product(String productName, double productQuantity, double unitPrice) {
+        this.productName = productName;
+        this.productQuantity = productQuantity;
+        this.unitPrice = unitPrice;
     }
 
-    public String getName() {
-        return name;
+    public String getProductName() {
+        return productName;
     }
 
-    public double getQuantity() {
-        return quantity;
+    public double getProductQuantity() {
+        return productQuantity;
     }
 
-    public double getPricePerUnit() {
-        return pricePerUnit;
+    public double getUnitPrice() {
+        return unitPrice;
     }
 
     public double getTotalPrice() {
-        return quantity * pricePerUnit;
+        return productQuantity * unitPrice;
     }
 }
