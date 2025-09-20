@@ -2,9 +2,8 @@ package JavaFundamental;
 
 public class VolumeofaCylinder {
     public static void main(String[] args) {
-        double radius = 5.0;
-        double height = 10.0;
-        double volume = Math.PI * radius * radius * height;
-        System.out.println("The volume of the cylinder with radius " + radius + " and height " + height + " is: " + volume);
+        double r = 5.0, h = 10.0;
+        double vol = Math.PI * r * r * h;
+        System.out.println("Volume of cylinder with radius " + r + " and height " + h + " is: " + vol);
     }
 }
